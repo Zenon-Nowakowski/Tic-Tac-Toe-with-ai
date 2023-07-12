@@ -7,7 +7,7 @@ class TicTacToe:
         #win state
         self.current_winner = None 
     #printer function 
-    def printboard(self):
+    def print_board(self):
         #create subarrays, print out said subarrays 
         for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
             print('| ' + ' | '.join(row) + ' | ')
@@ -70,21 +70,21 @@ def play(game, x_player, o_player, print_game=True):
         
     letter = "X"
 
-    while( game.empty_squares()):
+    while(game.empty_squares()):
         if letter == 'O':
             square = o_player.get_move(game)
         else:
             square = x_player.get_move(game)
-    if game.make_move(square, letter):
-        if print_game:
-            print(letter + ' has input to square: {square}')
-            game.print_board()
-            print('')
-        letter = 'O' if letter == 'X' else 'X'
-        if game.current_winner:
-            if print_game: 
-                print('{letter} wins')
-            return letter
+        if game.make_move(square, letter):
+            if print_game:
+                print(letter + f"has input to square: {square}")
+                game.print_board()
+                print('')
+            if game.current_winner:
+                if print_game: 
+                    print(f'{letter} wins')
+                return letter
+            letter = 'O' if letter == 'X' else 'X'
     if print_game:
         print("its a tie")
 
